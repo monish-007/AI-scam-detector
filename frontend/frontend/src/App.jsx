@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const API_BASE = 'http://localhost:8000'
+const API_BASE = 'https://ai-scam-detector-0ez1.onrender.com'
 
 const initialRiskState = {
   risk_score: 0,
