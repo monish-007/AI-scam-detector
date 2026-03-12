@@ -2,30 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  body {
-    @apply bg-slate-950 text-slate-100 antialiased;
-  }
-
-  #root {
-    @apply min-h-screen;
-  }
-}
-
-@layer components {
-  .card {
-    @apply bg-slate-900/70 border border-slate-800 rounded-xl shadow-xl shadow-slate-950/60;
-  }
-
-  .card-header {
-    @apply flex items-center justify-between mb-3;
-  }
-
-  .card-title {
-    @apply text-sm font-medium uppercase tracking-wider text-slate-400;
-  }
-
-  .card-body {
-    @apply text-sm text-slate-200;
-  }
+body {
+  background-color: #020617;
+  color: #f1f5f9;
 }
