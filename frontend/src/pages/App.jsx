@@ -1,11 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import Sidebar from '../components/Sidebar.jsx'
 import Dashboard from './Dashboard.jsx'
-import MessageScanner from './MessageScanner.jsx'
-import LinkScanner from './LinkScanner.jsx'
-import ImageScanner from './ImageScanner.jsx'
-import QrScanner from './QrScanner.jsx'
-import ScanHistory from '../components/ScanHistory.jsx'
+import Scanners from './Scanners.jsx'
+import ThreatAnalytics from './ThreatAnalytics.jsx'
+import Settings from './Settings.jsx'
 
 // Backend base URL:
 // - In production, set VITE_API_BASE_URL in your environment (Vercel/Render).
@@ -20,7 +18,7 @@ const initialRiskState = {
 }
 
 export default function App() {
-  const [activeSection, setActiveSection] = useState('dashboard')
+  const [activeSection, setActiveSection] = useState('overview')
   const [isScanning, setIsScanning] = useState(false)
 
   const [currentRisk, setCurrentRisk] = useState(initialRiskState)
@@ -166,7 +164,7 @@ export default function App() {
   }
 
   const renderContent = () => {
-    if (activeSection === 'dashboard') {
+    if (activeSection === 'overview') {
       return (
         <Dashboard
           currentRisk={currentRisk}
@@ -175,48 +173,33 @@ export default function App() {
         />
       )
     }
-    if (activeSection === 'message') {
+    if (activeSection === 'scanners') {
       return (
-        <MessageScanner
-          value={messageInput}
-          onChange={setMessageInput}
-          onScan={() => performScan('message')}
+        <Scanners
+          messageInput={messageInput}
+          setMessageInput={setMessageInput}
+          linkInput={linkInput}
+          setLinkInput={setLinkInput}
+          imageFile={imageFile}
+          setImageFile={setImageFile}
+          qrFile={qrFile}
+          setQrFile={setQrFile}
           isScanning={isScanning}
+          performScan={performScan}
         />
       )
     }
-    if (activeSection === 'link') {
+    if (activeSection === 'analytics') {
       return (
-        <LinkScanner
-          value={linkInput}
-          onChange={setLinkInput}
-          onScan={() => performScan('link')}
-          isScanning={isScanning}
+        <ThreatAnalytics
+          currentRisk={currentRisk}
+          lastScanType={lastScanType}
+          scans={recentScans}
         />
       )
     }
-    if (activeSection === 'image') {
-      return (
-        <ImageScanner
-          file={imageFile}
-          onFileChange={setImageFile}
-          onScan={() => performScan('image')}
-          isScanning={isScanning}
-        />
-      )
-    }
-    if (activeSection === 'qr') {
-      return (
-        <QrScanner
-          file={qrFile}
-          onFileChange={setQrFile}
-          onScan={() => performScan('qr')}
-          isScanning={isScanning}
-        />
-      )
-    }
-    if (activeSection === 'history') {
-      return <ScanHistory scans={recentScans} />
+    if (activeSection === 'settings') {
+      return <Settings apiBase={API_BASE} />
     }
     return null
   }

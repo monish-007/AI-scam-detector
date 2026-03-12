@@ -1,12 +1,16 @@
+import sys
+import os
+
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional
 
-from ai_models.text_classifier import get_text_scam_risk
-from utils.phishing import analyze_url_risk
-from utils.ocr import extract_text_from_image
-from utils.qr_decoder import decode_qr_from_image
+from backend.ai_models.text_classifier import get_text_scam_risk
+from backend.utils.phishing import analyze_url_risk
+from backend.utils.ocr import extract_text_from_image
+from backend.utils.qr_decoder import decode_qr_from_image
 
 
 class MessageRequest(BaseModel):

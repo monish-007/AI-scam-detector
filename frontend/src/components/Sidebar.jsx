@@ -1,10 +1,8 @@
 const navItems = [
-  { id: 'dashboard', label: 'Dashboard' },
-  { id: 'message', label: 'Message Scanner' },
-  { id: 'link', label: 'Link Scanner' },
-  { id: 'image', label: 'Image Scanner' },
-  { id: 'qr', label: 'QR Scanner' },
-  { id: 'history', label: 'Scan History' },
+  { id: 'overview', label: 'Overview' },
+  { id: 'scanners', label: 'Scanners' },
+  { id: 'analytics', label: 'Threat Analytics' },
+  { id: 'settings', label: 'Settings' },
 ]
 
 export default function Sidebar({ active, onChange, apiBase }) {
